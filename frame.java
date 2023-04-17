@@ -64,7 +64,7 @@ import java.util.Random;
 
         public void setRand(){
             int min = 1;
-            int max = 100;
+            int max = 100 - numberTotal;
             randInt = (int) (Math.random()*(max-min+1)+min);   
             System.out.println(randInt);
         }
