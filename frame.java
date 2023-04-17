@@ -1,19 +1,23 @@
 import javax.swing.*;  
 import java.awt.event.*;  
+import java.util.Random;
+
 
     public class frame implements ActionListener{  
 
         JFrame f=new JFrame();//creating instance of JFrame  
+        Random rand = new Random();
         JLabel l1;
         JTextField t1;
         JProgressBar jb; 
         int numberTotal=0;
+        int randInt = rand.nextInt(10);
 
         frame(){
         l1 = new JLabel("Please enter in a number 1-100");  
         l1.setBounds(100,50,200, 40);  
 
-        JButton b=new JButton("clicker");//creating instance of JButton  
+        JButton b=new JButton("Enter");//creating instance of JButton  
         b.setBounds(150,150,100, 40);//x axis, y axis, width, height  
                 
         f.add(b);//adding button in JFrame  
@@ -44,8 +48,7 @@ import java.awt.event.*;
 
         }
         public static void main(String[] args) {  
-            frame f = new frame();
-            
+            new frame();
         } 
 
         public void actionPerformed(ActionEvent e) {  
@@ -53,19 +56,24 @@ import java.awt.event.*;
             try {
                 int a=Integer.parseInt(s1);
                 System.out.println(a);
-                numberTotal += a;
-                jb.setValue(numberTotal);
+                checkNum(a);
             }   
             catch(NumberFormatException nfe){
                 System.out.println("Please enter in a number");
             }
-        }  
+        } 
 
-        public void increase(int num) {
-            if (num == 10) {
-                System.out.println("works");
+        public void setRand(){
+            randInt = rand.nextInt(100 - numberTotal);
+            System.out.println(randInt);
+        }
+        
+        public void checkNum(int numberCheck){
+            if (numberCheck == randInt) {
+                numberTotal += numberCheck;
+                jb.setValue(numberTotal);
+                setRand();
             }
         }
 
- 
-}  
+    }
